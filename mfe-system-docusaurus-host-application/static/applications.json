@@ -1,0 +1,41 @@
+[
+  {
+    "id": "home",
+    "name": "home",
+    "label": "Home",
+    "route": "/",
+    "url": "/apps/home/",
+    "remote": {
+      "url": "/apps/home/remoteEntry.js",
+      "scope": "home",
+      "module": "./HomeSingleSpa",
+      "type": "webpack"
+    }
+  },
+  {
+    "id": "tasks",
+    "name": "tasks",
+    "label": "Tasks",
+    "route": "/tasks",
+    "url": "/apps/tasks/",
+    "remote": {
+      "url": "/apps/tasks/remoteEntry.js",
+      "scope": "tasks",
+      "module": "./TasksSingleSpa",
+      "type": "webpack"
+    }
+  },
+  {
+    "id": "messages",
+    "name": "messages",
+    "label": "Messages",
+    "route": "/messages",
+    "url": "/apps/messages/",
+    "remote": {
+      "url": "/apps/messages/assets/remoteEntry.js",
+      "scope": "messages",
+      "module": "./MessagesSingleSpa",
+      "type": "module"
+    }
+  }
+]

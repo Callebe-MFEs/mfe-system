@@ -10,7 +10,8 @@
       "scope": "shell",
       "module": "./Shell",
       "type": "module"
-    }
+    },
+    "scripts": ["https://cdn.jsdelivr.net/npm/zone.js@0.10.3/dist/zone.min.js"]
   },
   {
     "id": "home",

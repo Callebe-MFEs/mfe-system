@@ -1,0 +1,92 @@
+services:
+  mongodb:
+    image: mongo:7.0.12
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mfesR00tPass
+
+  applications-service:
+    build: ../mfe-system-applications-service
+    labels:
+      - "traefik.http.routers.applications-service.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.applications-service.middlewares=applications-service-stripprefix"
+      - "traefik.http.middlewares.applications-service-stripprefix.stripprefix.prefixes=/api"
+      - "traefik.http.services.applications-service.loadbalancer.server.port=3000"
+    environment:
+      STORAGE: mongo
+      MONGODB_CONNECTION_STRING: mongodb://root:mfesR00tPass@mongodb:27017
+    depends_on:
+      - mongodb
+
+  applications-mfe:
+    build: ../mfe-system-applications-mfe
+    labels:
+      - "traefik.http.routers.applications-mfe.rule=PathPrefix(`/apps/applications`)"
+      - "traefik.http.routers.applications-mfe.middlewares=applications-mfe-stripprefix"
+      - "traefik.http.middlewares.applications-mfe-stripprefix.stripprefix.prefixes=/apps/applications"
+      - "traefik.http.services.applications-mfe.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+      APPLICATIONS_API: /api/applications
+
+  host-application:
+    build: ./
+    labels:
+      - "traefik.http.routers.host-application.rule=PathPrefix(`/`)"
+      - "traefik.http.services.host-application.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+      APPLICATIONS_API: /api/applications
+
+  shell:
+    build: ../mfe-system-examples/shell
+    labels:
+      - "traefik.http.routers.shell.rule=PathPrefix(`/apps/shell`)"
+      - "traefik.http.routers.shell.middlewares=shell-stripprefix"
+      - "traefik.http.middlewares.shell-stripprefix.stripprefix.prefixes=/apps/shell"
+      - "traefik.http.services.shell.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+
+  home:
+    build: ../mfe-system-examples/home
+    labels:
+      - "traefik.http.routers.home.rule=PathPrefix(`/apps/home`)"
+      - "traefik.http.routers.home.middlewares=home-stripprefix"
+      - "traefik.http.middlewares.home-stripprefix.stripprefix.prefixes=/apps/home"
+      - "traefik.http.services.home.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+
+  messages:
+    build: ../mfe-system-examples/messages
+    labels:
+      - "traefik.http.routers.messages.rule=PathPrefix(`/apps/messages`)"
+      - "traefik.http.routers.messages.middlewares=messages-stripprefix"
+      - "traefik.http.middlewares.messages-stripprefix.stripprefix.prefixes=/apps/messages"
+      - "traefik.http.services.messages.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+
+  tasks:
+    build: ../mfe-system-examples/tasks
+    labels:
+      - "traefik.http.routers.tasks.rule=PathPrefix(`/apps/tasks`)"
+      - "traefik.http.routers.tasks.middlewares=tasks-stripprefix"
+      - "traefik.http.middlewares.tasks-stripprefix.stripprefix.prefixes=/apps/tasks"
+      - "traefik.http.services.tasks.loadbalancer.server.port=8080"
+    environment:
+      HTTP_PORT: 8080
+
+  reverse-proxy:
+    image: traefik:v3.0.1
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
+    ports:
+      # The HTTP port
+      - "8000:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock

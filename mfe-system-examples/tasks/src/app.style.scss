@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.tasks-app {
+  padding: 10px;
+  background: lightyellow;
+
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+
+  > #outlet {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: auto;
+  }
+}

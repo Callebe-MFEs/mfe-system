@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  height: 100%;
+  min-height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+.header,
+.footer {
+  height: 80px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.content,
+.content ::slotted(*) {
+  min-height: calc(100vh - 160px);
+  box-sizing: border-box;
+}
+
+nav {
+  a {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}

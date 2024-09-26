@@ -1,0 +1,27 @@
+{
+  "name": "mfe-system-examples-shell",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "npm run dev",
+    "serve": "vite",
+    "dev": "concurrently -p\"[{name}]\" -n Build,Preview -c \"bgBlue.bold,bgCyan.bold\"  \"npm run build-watch\" \"npm run preview\"",
+    "build": "tsc && vite build --base=/apps/shell/",
+    "build-watch": "vite build --watch",
+    "preview": "vite preview",
+    "docker:build": "docker build -t mfe-system-examples-shell ."
+  },
+  "dependencies": {
+    "@vaadin/router": "^1.7.5",
+    "lit": "^3.1.2"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.3.5",
+    "@types/node": "^20.12.11",
+    "concurrently": "^8.2.2",
+    "sass": "^1.77.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
