@@ -1,0 +1,298 @@
+<div class="application">
+  <div class="fields">
+    <form
+      #appForm="ngForm"
+      (ngSubmit)="appForm.form.valid && !dataError && saveApplication()"
+    >
+      <div class="application--label">
+        {{ application?.label }}
+      </div>
+      <div>
+        <label for="name">
+          <span class="field-label">Name:</span>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            minlength="3"
+            #name="ngModel"
+            [(ngModel)]="applicationCopy.name"
+          />
+        </label>
+        @if((appForm.submitted || name.touched) && name.errors
+        &&name.errors['required']) {
+        <span class="error">Name is required</span>
+        } @if((appForm.submitted || name.touched) && name.errors &&
+        name.errors['minlength']) {
+        <span class="error">Minnimum of 3 characters</span>
+        }
+      </div>
+      <div>
+        <label for="label">
+          <span class="field-label">Label:</span>
+          <input
+            type="text"
+            id="label"
+            name="label"
+            required
+            minlength="3"
+            #label="ngModel"
+            [(ngModel)]="applicationCopy.label"
+          />
+        </label>
+        @if((appForm.submitted || label.touched) && label.errors
+        &&label.errors['required']) {
+        <span class="error">Label is required</span>
+        } @if((appForm.submitted || label.touched) && label.errors &&
+        label.errors['minlength']) {
+        <span class="error">Minnimum of 3 characters</span>
+        }
+      </div>
+      <div>
+        <label for="route">
+          <span class="field-label">Route:</span>
+          <input
+            type="text"
+            id="route"
+            name="route"
+            #route="ngModel"
+            [(ngModel)]="applicationCopy.route"
+          />
+        </label>
+      </div>
+      <div>
+        <label for="url">
+          <span class="field-label">URL:</span>
+          <input
+            type="text"
+            id="url"
+            name="url"
+            regExpMatch="^(https?:\/\/.+)?\/.*"
+            required
+            #url="ngModel"
+            [(ngModel)]="applicationCopy.url"
+          />
+        </label>
+        @if((appForm.submitted || url.touched) && url.errors
+        &&url.errors['required']) {
+        <span class="error">Url is required</span>
+        } @if ((appForm.submitted || url.touched) && url.errors &&
+        url.errors['regExpMatch']) {
+        <span class="error"
+          >Url must match regular expression
+          <strong>^(https?:\/\/.+)?\/.*</strong>: (e.g. /my/path)</span
+        >
+        }
+      </div>
+      <div>
+        <label for="order">
+          <span class="field-label">Order:</span>
+          <input
+            type="number"
+            id="order"
+            name="order"
+            #order="ngModel"
+            [(ngModel)]="applicationCopy.order"
+          />
+        </label>
+      </div>
+
+      <!-- Remote fields -->
+      <div class="fields">
+        <div class="application--sub-label">Remote</div>
+        <div>
+          <label for="url">
+            <span class="field-label">URL:</span>
+            <input
+              type="text"
+              id="url"
+              name="remoteUrl"
+              regExpMatch="^(https?:\/\/.+)?\/.*"
+              required
+              #remoteUrl="ngModel"
+              [(ngModel)]="applicationCopy.remote.url"
+            />
+          </label>
+          @if((appForm.submitted || remoteUrl.touched) && remoteUrl.errors
+          &&remoteUrl.errors['required']) {
+          <span class="error">Url is required</span>
+          } @if ((appForm.submitted || remoteUrl.touched) && remoteUrl.errors &&
+          remoteUrl.errors['regExpMatch']) {
+          <span class="error"
+            >Url must match regular expression
+            <strong>^(https?:\/\/.+)?\/.*</strong>: (e.g.
+            /my/path/remoteEntry.js)</span
+          >
+          }
+        </div>
+        <div>
+          <label for="scope">
+            <span class="field-label">Scope:</span>
+            <input
+              type="text"
+              id="scope"
+              name="remoteScope"
+              required
+              #remoteScope="ngModel"
+              [(ngModel)]="applicationCopy.remote.scope"
+            />
+          </label>
+          @if((appForm.submitted || remoteScope.touched) && remoteScope.errors
+          &&remoteScope.errors['required']) {
+          <span class="error">Scope is required</span>
+          }
+        </div>
+        <div>
+          <label for="module">
+            <span class="field-label">Module:</span>
+            <input
+              type="text"
+              id="module"
+              name="remoteModule"
+              required
+              #remoteModule="ngModel"
+              [(ngModel)]="applicationCopy.remote.module"
+            />
+          </label>
+          @if((appForm.submitted || remoteModule.touched) && remoteModule.errors
+          &&remoteModule.errors['required']) {
+          <span class="error">Module is required</span>
+          }
+        </div>
+        <div>
+          <span class="field-label">Type:</span>
+          <label for="remote-type-webpack">
+            <input
+              type="radio"
+              id="remote-type-webpack"
+              name="remoteType"
+              value="webpack"
+              [(ngModel)]="applicationCopy.remote.type"
+            />
+            <span class="field-label">Webpack</span>
+          </label>
+          <label for="remote-type-module">
+            <input
+              type="radio"
+              id="remote-type-module"
+              name="remoteType"
+              value="module"
+              [(ngModel)]="applicationCopy.remote.type"
+            />
+            <span class="field-label">Module</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Assets -->
+      @if(applicationCopy.id === 'shell') {
+      <div class="fields">
+        <div class="application--sub-label">Assets</div>
+        <div>
+          <label for="styles">
+            <span class="field-label">Styles:</span>
+            <textarea
+              id="styles"
+              name="styles"
+              [(ngModel)]="styles"
+              (ngModelChange)="stylesChange($event)"
+            ></textarea>
+          </label>
+        </div>
+        <div>
+          <label for="scripts">
+            <span class="field-label">Scripts:</span>
+            <textarea
+              id="scripts"
+              name="scripts"
+              [(ngModel)]="scripts"
+              (ngModelChange)="scriptsChange($event)"
+            ></textarea>
+          </label>
+        </div>
+      </div>
+      }
+
+      <!-- Support fields -->
+      <div class="fields">
+        <div class="application--sub-label">Support</div>
+        <div>
+          <label for="team">
+            <span class="field-label">Team:</span>
+            <input
+              type="text"
+              id="team"
+              name="supportTeam"
+              [(ngModel)]="applicationCopy.support.team"
+            />
+          </label>
+        </div>
+        <div class="fields">
+          <div class="application--sub-label">Contacts</div>
+          @for(contact of applicationCopy.support.contacts; track contact.email;
+          let index = $index) {
+          <div>
+            <label for="contact-name-{{ index }}">
+              <span class="field-label">Name:</span>
+              <input
+                type="text"
+                id="contact-name-{{ index }}"
+                name="contactName{{ index }}"
+                [(ngModel)]="contact.name"
+              />
+            </label>
+            <label for="contact-email-{{ index }}">
+              <span class="field-label">Email:</span>
+              <input
+                type="text"
+                id="contact-email-{{ index }}"
+                name="contactEmail{{ index }}"
+                [(ngModel)]="contact.email"
+              />
+            </label>
+            <label for="contact-phone-{{ index }}">
+              <span class="field-label">Phone:</span>
+              <input
+                type="text"
+                id="contact-phone-{{ index }}"
+                name="contactPhone{{ index }}"
+                [(ngModel)]="contact.phone"
+              />
+            </label>
+            <label
+              ><button type="button" (click)="removeContact(index)">
+                Remove
+              </button></label
+            >
+          </div>
+          }
+          <button type="button" (click)="addContact()">Add Contact</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Data fields -->
+    <div class="fields">
+      <div class="application--sub-label">Data</div>
+      <div>
+        <json-editor
+          [options]="editorOptions"
+          [data]="data"
+          (change)="dataChange($event)"
+        ></json-editor>
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        [disabled]="!appForm.form.valid || dataError"
+        (click)="saveApplication()"
+      >
+        Save
+      </button>
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+</div>

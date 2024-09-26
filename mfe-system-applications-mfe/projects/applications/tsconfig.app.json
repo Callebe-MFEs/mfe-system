@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts",
+    "src/mfe/mfe.component.ts",
+    "src/mfe/mfe.single-spa.ts"
+  ],
+  "include": ["src/**/*.d.ts"]
+}

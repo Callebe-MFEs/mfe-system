@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+.fields {
+  padding: 10px;
+
+  label {
+    display: inline-block;
+  }
+
+  textarea {
+    vertical-align: text-top;
+  }
+}
+
+.application--label {
+  font-weight: bold;
+}
+
+.application--sub-label {
+  font-weight: 700;
+}
+
+.field-label {
+  display: inline-block;
+  width: 85px;
+  padding: 5px;
+}
+
+label {
+  padding-right: 30px;
+}
+
+label:last-child {
+  padding-right: 0;
+}
+
+.error {
+  color: red;
+}

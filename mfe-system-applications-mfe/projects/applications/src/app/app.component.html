@@ -1,0 +1,10 @@
+<app-applications-list
+  [applications]="applications"
+  [(selectedApplication)]="selectedApplication"
+  (saveApplication)="saveApplication($event)"
+  (newApplication)="newApplication()"
+  (editCanceld)="editCanceld($event)"
+  (deleteApplication)="deleteApplication($event)"
+  (editShellApplication)="editShellApplication()"
+  (replaceApplications)="replaceApplications($event)"
+></app-applications-list>

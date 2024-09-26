@@ -1,0 +1,77 @@
+<div class="applications-list" #applicationsList>
+  <div class="applications-list-header">
+    <button (click)="newApplicationEmit()">New Application</button>
+    <button (click)="editShellApplicationEmit()">Edit Shell Application</button>
+    <button (click)="replaceApplicationsClick()">Replace Applications</button>
+  </div>
+  <div class="applications-list-container" [class.wide]="wide">
+    <div class="applications">
+      @for(application of applications; track application.id) {
+      <div
+        class="application"
+        [class.selected]="application.id === selectedApplication?.id"
+      >
+        <div
+          class="application__header"
+          (click)="toggleApplication(application)"
+        >
+          <div class="application__title">{{ application.label }}</div>
+          <div class="application__actions">
+            <button
+              (click)="
+                deleteApplicationEmit(application); $event.stopPropagation()
+              "
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        @if(selectedApplication?.id === application.id && !wide) {
+        <div class="application__body">
+          <app-application
+            [application]="application"
+            (applicationChange)="applicationChange($event)"
+            (editCanceld)="editCanceldEmit(application)"
+          ></app-application>
+        </div>
+        }
+      </div>
+      }
+    </div>
+    <div class="application-details">
+      @if(selectedApplication && wide) {
+      <div class="application__body">
+        <app-application
+          [application]="selectedApplication"
+          (applicationChange)="applicationChange($event)"
+          (editCanceld)="editCanceldEmit(selectedApplication)"
+        ></app-application>
+      </div>
+      }
+      <div class="fields" [hidden]="!replaceApplicationEditor">
+        <div class="application--sub-label">Applications List</div>
+        <div>
+          <json-editor
+            [options]="editorOptions"
+            [data]="data"
+            (change)="dataChange($event)"
+          ></json-editor>
+        </div>
+        <div>
+          <button
+            type="button"
+            [disabled]="dataError"
+            (click)="replaceApplicationEmit()"
+          >
+            Save
+          </button>
+          <button type="button" (click)="editCanceldEmit(null)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="applications-list-footer">
+    {{ applications.length }}
+    {{ applications.length > 1 ? "Applications" : "Application" }}
+  </div>
+</div>
