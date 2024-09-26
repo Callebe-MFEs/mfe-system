@@ -1,0 +1,117 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Micro-Frontend Applications API",
+    "collectionId": "2d4db47e-8210-496f-8456-22511dce0cff",
+    "dateExported": "2024-09-25T15:36:45.570Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d4f3736e-760f-43d9-98a2-c5c1fd8a026e",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Get Applications",
+            "url": "{{URL}}/applications/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-05-15T14:11:44.673Z",
+            "modified": "2024-05-15T14:12:07.850Z",
+            "headers": []
+        },
+        {
+            "_id": "22351772-22b2-44d2-bb30-d312e516df51",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Delete Application",
+            "url": "{{URL}}/applications/{id}",
+            "method": "DELETE",
+            "sortNum": 20000,
+            "created": "2024-05-15T14:12:37.388Z",
+            "modified": "2024-07-03T20:15:44.320Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "99a74f8e-5fb8-43e9-83e0-2e33b1ef812c",
+                    "isPath": true
+                }
+            ]
+        },
+        {
+            "_id": "98135588-a5c2-44c1-855a-0721182daee5",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Replace Applications",
+            "url": "{{URL}}/applications/",
+            "method": "PUT",
+            "sortNum": 25000,
+            "created": "2024-09-25T15:33:16.858Z",
+            "modified": "2024-09-25T15:34:13.362Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "[\r\n  {\r\n    \"id\": \"shell\",\r\n    \"name\": \"shell\",\r\n    \"label\": \"Shell\",\r\n    \"route\": \"/\",\r\n    \"url\": \"/apps/shell/\",\r\n    \"remote\": {\r\n      \"url\": \"/apps/shell/assets/remoteEntry.js\",\r\n      \"scope\": \"shell\",\r\n      \"module\": \"./Shell\",\r\n      \"type\": \"module\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"home\",\r\n    \"name\": \"home\",\r\n    \"label\": \"Home\",\r\n    \"route\": \"/\",\r\n    \"url\": \"/apps/home/\",\r\n    \"remote\": {\r\n      \"url\": \"/apps/home/remoteEntry.js\",\r\n      \"scope\": \"home\",\r\n      \"module\": \"./Home\",\r\n      \"type\": \"webpack\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"tasks\",\r\n    \"name\": \"tasks\",\r\n    \"label\": \"Tasks\",\r\n    \"route\": \"/tasks\",\r\n    \"url\": \"/apps/tasks/\",\r\n    \"remote\": {\r\n      \"url\": \"/apps/tasks/remoteEntry.js\",\r\n      \"scope\": \"tasks\",\r\n      \"module\": \"./Tasks\",\r\n      \"type\": \"webpack\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"messages\",\r\n    \"name\": \"messages\",\r\n    \"label\": \"Messages\",\r\n    \"route\": \"/messages\",\r\n    \"url\": \"/apps/messages/\",\r\n    \"remote\": {\r\n      \"url\": \"/apps/messages/assets/remoteEntry.js\",\r\n      \"scope\": \"messages\",\r\n      \"module\": \"./Messages\",\r\n      \"type\": \"module\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"applications\",\r\n    \"name\": \"applications\",\r\n    \"label\": \"Applications\",\r\n    \"route\": \"/applications\",\r\n    \"url\": \"/apps/applications/\",\r\n    \"remote\": {\r\n      \"url\": \"/apps/applications/remoteEntry.js\",\r\n      \"scope\": \"applications\",\r\n      \"module\": \"./MFEComponent\",\r\n      \"type\": \"module\"\r\n    }\r\n  }\r\n]\r\n",
+                "form": []
+            }
+        },
+        {
+            "_id": "6bf657d1-67ee-4411-9d7d-9ca2baf8f016",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Add/Update Shell",
+            "url": "{{URL}}/applications/shell",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-05-15T14:14:25.544Z",
+            "modified": "2024-07-03T20:18:37.913Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"shell\",\n  \"label\": \"shell 2\",\n  \"route\": \"/\",\n  \"remote\": {\n    \"url\": \"/remoteEntry.js\",\n    \"scope\": \"myShell\",\n    \"module\": \"./myShell\",\n    \"type\": \"webpack\"\n  },\n  \"styles\": [],\n  \"scripts\": [],\n  \"support\": {\n    \"team\": \"EA\",\n    \"contacts\": [\n      {\n        \"name\": \"Callebe Gomes\",\n        \"email\": \"callebe.gomes@cnh.com\"\n      }\n    ]\n  }\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "8e131175-73f0-44bc-ad27-784d65ce84e5",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Add Application",
+            "url": "{{URL}}/applications",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-05-15T14:15:41.190Z",
+            "modified": "2024-07-03T20:18:52.438Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"second-test\",\n  \"label\": \"Test 2\",\n  \"route\": \"/\",\n  \"remote\": {\n    \"url\": \"/remoteEntry.js\",\n    \"scope\": \"myTest\",\n    \"module\": \"./myTest\",\n    \"type\": \"webpack\"\n  },\n  \"support\": {\n    \"team\": \"EA\",\n    \"contacts\": [\n      {\n        \"name\": \"Callebe Gomes\",\n        \"email\": \"callebe.gomes@cnh.com\"\n      }\n    ]\n  }\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "227fdc73-4c23-4e30-a878-63f79f2df616",
+            "colId": "2d4db47e-8210-496f-8456-22511dce0cff",
+            "containerId": "",
+            "name": "Update Application",
+            "url": "{{URL}}/applications/{id}",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-05-20T20:14:19.885Z",
+            "modified": "2024-07-03T20:19:21.589Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "fa910376-3f4b-411f-88d6-f5a1e542dc2c",
+                    "isPath": true
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"name\": \"second-test\",\n    \"label\": \"Test 2\",\n    \"route\": \"/\",\n    \"remote\": {\n      \"url\": \"/remoteEntry.js\",\n      \"scope\": \"myTest\",\n      \"module\": \"./myTest\",\n      \"type\": \"webpack\"\n    },\n    \"support\": {\n      \"team\": \"EA\",\n      \"contacts\": [\n        {\n          \"name\": \"Callebe Gomes\",\n          \"email\": \"callebe.gomes@cnh.com\"\n        }\n      ]\n    },\n    \"id\": \"fa910376-3f4b-411f-88d6-f5a1e542dc2c\",\n    \"order\": 1\n  }",
+                "form": []
+            }
+        }
+    ],
+    "ref": "uk5mpvInjdsyy3RCU7rLCZZ5WvQ0YindAP7TCy44lemJJCn1rvIqKmJ7EQfl6InLo5WEzlJmzfO5NS-R5nOPZQ"
+}

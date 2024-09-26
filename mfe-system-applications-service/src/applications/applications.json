@@ -1,0 +1,52 @@
+{
+  "applications": [
+    {
+      "id": "home",
+      "name": "home",
+      "label": "Home",
+      "route": "/",
+      "remote": {
+        "url": "/remoteEntry.js",
+        "scope": "myWorkspaceHomeApp",
+        "module": "./myWorkspaceHomeApp",
+        "type": "webpack"
+      }
+    },
+    {
+      "id": "tasks",
+      "name": "tasks",
+      "label": "Tasks",
+      "route": "/tasks",
+      "remote": {
+        "url": "/apps/tasks/remoteEntry.js",
+        "scope": "mwsTasks",
+        "module": "./mwsTasks",
+        "type": "webpack"
+      }
+    },
+    {
+      "id": "user-profile",
+      "name": "user-profile",
+      "label": "User Profile",
+      "route": "/user-profile",
+      "remote": {
+        "url": "/apps/user-profile/remoteEntry.js",
+        "scope": "mwsUserProfile",
+        "module": "./mwsUserProfile",
+        "type": "module"
+      }
+    },
+    {
+      "id": "messages",
+      "name": "messages",
+      "label": "Messages",
+      "route": "/messages",
+      "remote": {
+        "url": "/apps/messages/assets/remoteEntry.js",
+        "scope": "mwsMessages",
+        "module": "./mwsMessages",
+        "type": "module"
+      }
+    }
+  ]
+}

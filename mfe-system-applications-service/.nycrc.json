@@ -1,0 +1,19 @@
+{
+  "extends": ["@istanbuljs/nyc-config-typescript"],
+  "check-coverage": true,
+  "all": true,
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts", "src/**/*.d.ts", "src/*.ts", "src/doc/**/*.ts"],
+  "reporter": ["html", "lcov", "text", "text-summary"],
+  "report-dir": "coverage",
+  "branches": 80,
+  "lines": 80,
+  "functions": 80,
+  "statements": 80,
+  "watermarks": {
+    "lines": [80, 95],
+    "functions": [80, 95],
+    "branches": [50, 65],
+    "statements": [80, 95]
+  }
+}

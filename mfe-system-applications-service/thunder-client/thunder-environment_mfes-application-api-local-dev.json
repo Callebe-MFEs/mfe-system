@@ -1,0 +1,14 @@
+{
+    "clientName": "Thunder Client",
+    "environmentName": "mfes-application-api-local-dev",
+    "environmentId": "721e42af-ac90-4d8b-b203-64104937dfc7",
+    "dateExported": "2024-09-25T15:37:15.609Z",
+    "version": "1.2",
+    "variables": [
+        {
+            "name": "URL",
+            "value": "http://localhost:3000"
+        }
+    ],
+    "ref": "NtdYvJ8KSmf3QBUzraXBnYqUQT9ejO1WB1vSNtLbM7CCG-zyulKjQ3o8eucugJqa"
+}

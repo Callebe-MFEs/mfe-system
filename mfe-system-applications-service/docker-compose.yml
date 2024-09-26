@@ -1,0 +1,30 @@
+services:
+  mongo:
+    image: mongo:7.0.9
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: admin
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mfesR00tPass
+    ports:
+      - 27017:27017
+
+  mfe-system-applications-service:
+    build: .
+    environment:
+      STORAGE: mongo
+      MONGODB_CONNECTION_STRING: mongodb://root:mfesR00tPass@mongo:27017
+      MONGODB_DATABASE_NAME: applications
+      MONGODB_DATABASE_APPLICATIONS_COLLECTION_NAME: applications
+    ports:
+      - 8080:3000
+    depends_on:
+      - mongo
+
+  # mongoclient:
+  #   image: mongoclient/mongoclient:4.0.1
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - mongo
