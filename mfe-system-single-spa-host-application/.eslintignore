@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+reports/
+package.json
+package-lock.json
+tsconfig.json
+tsconfig.**.json
+karma.conf.cjs
+webpack**js
+*.spec.ts
+*.js
