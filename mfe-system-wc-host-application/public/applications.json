@@ -1,0 +1,67 @@
+[
+  {
+    "id": "shell",
+    "name": "shell",
+    "label": "Shell",
+    "route": "/",
+    "url": "/apps/shell/",
+    "remote": {
+      "url": "/apps/shell/assets/remoteEntry.js",
+      "scope": "shell",
+      "module": "./Shell",
+      "type": "module"
+    }
+  },
+  {
+    "id": "home",
+    "name": "home",
+    "label": "Home",
+    "route": "/",
+    "url": "/apps/home/",
+    "remote": {
+      "url": "/apps/home/remoteEntry.js",
+      "scope": "home",
+      "module": "./Home",
+      "type": "webpack"
+    }
+  },
+  {
+    "id": "tasks",
+    "name": "tasks",
+    "label": "Tasks",
+    "route": "/tasks",
+    "url": "/apps/tasks/",
+    "remote": {
+      "url": "/apps/tasks/remoteEntry.js",
+      "scope": "tasks",
+      "module": "./Tasks",
+      "type": "webpack"
+    }
+  },
+  {
+    "id": "messages",
+    "name": "messages",
+    "label": "Messages",
+    "route": "/messages",
+    "url": "/apps/messages/",
+    "remote": {
+      "url": "/apps/messages/assets/remoteEntry.js",
+      "scope": "messages",
+      "module": "./Messages",
+      "type": "module"
+    }
+  },
+  {
+    "id": "applications",
+    "name": "applications",
+    "label": "Applications",
+    "route": "/applications",
+    "url": "/apps/applications/",
+    "remote": {
+      "url": "/apps/applications/remoteEntry.js",
+      "scope": "applications",
+      "module": "./MFEComponent",
+      "type": "module"
+    }
+  }
+]
