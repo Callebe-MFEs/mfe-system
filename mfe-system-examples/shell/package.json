@@ -8,6 +8,7 @@
     "serve": "vite",
     "dev": "concurrently -p\"[{name}]\" -n Build,Preview -c \"bgBlue.bold,bgCyan.bold\"  \"npm run build-watch\" \"npm run preview\"",
     "build": "tsc && vite build --base=/apps/shell/",
+    "build:firebase": "npm run build -- --outDir=../../firebase/public/apps/shell",
     "build-watch": "vite build --watch",
     "preview": "vite preview",
     "docker:build": "docker build -t mfe-system-examples-shell ."

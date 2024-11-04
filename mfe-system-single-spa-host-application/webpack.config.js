@@ -6,7 +6,7 @@ import { merge } from "webpack-merge";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import webpack from "webpack";
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 const { ModuleFederationPlugin } = webpack.container;
@@ -17,13 +17,22 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 export default function (env, args) {
   console.log(args.mode === "production" ? "Production build" : "Development build");
 
+  const firebase = !!env.firebase;
+
+  let outputPath = path.resolve(__dirname, "dist");
+
+  if (firebase) {
+    console.log("Firebase build");
+    outputPath = path.resolve(__dirname, "../firebase/public")
+  }
+
   return merge(common, {
     entry: {
       main: path.resolve(__dirname, "src/index.ts"),
     },
     output: {
       filename: "index.js",
-      path: path.resolve(__dirname, "dist"),
+      path: outputPath,
       publicPath: "auto",
     },
     resolve: {

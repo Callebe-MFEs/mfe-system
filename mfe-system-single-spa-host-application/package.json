@@ -7,6 +7,7 @@
     "dev": "webpack serve -c webpack.dev.js",
     "start": "webpack serve -c webpack.dev.js",
     "build": "webpack --mode production",
+    "build:firebase": "npm run build -- --env firebase",
     "lint": "eslint . --ext ts --quiet",
     "pretty-check": "prettier --check src/**/*.ts",
     "pretty-fix": "prettier --write src/**/*.ts",

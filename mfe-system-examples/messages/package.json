@@ -9,6 +9,7 @@
     "dev": "concurrently -p\"[{name}]\" -n Build,Preview -c \"bgBlue.bold,bgCyan.bold\"  \"npm run build-watch\" \"npm run preview\"",
     "build-watch": "vite build --watch",
     "build": "tsc && vite build --base=/apps/messages/",
+    "build:firebase": "npm run build -- --outDir=../../firebase/public/apps/messages",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "docker:build": "docker build -t mfe-system-examples-messages ."

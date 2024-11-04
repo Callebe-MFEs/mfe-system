@@ -8,6 +8,7 @@
     "dev": "webpack serve -c webpack.dev.js",
     "start": "webpack serve -c webpack.dev.js",
     "build": "webpack --mode production",
+    "build:firebase": "npm run build -- --env firebase",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker:build": "docker build -t mfe-system-examples-home ."
   },
