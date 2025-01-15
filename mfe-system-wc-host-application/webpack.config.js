@@ -6,7 +6,7 @@ import { merge } from "webpack-merge";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import webpack from "webpack";
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 const { ModuleFederationPlugin } = webpack.container;

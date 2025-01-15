@@ -23,8 +23,8 @@ All the MFEs are compatible with all the three host applications.
 
 Environment:
 
-- node v20.12.2
-- npm 10.5.0
+- node v22.13.0
+- npm 10.9.2
 - Docker (for local testing only)
 
 ## Running using Docker (local test)
