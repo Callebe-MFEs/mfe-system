@@ -1,0 +1,47 @@
+// .eslintrc
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser", // Specifies the ESLint parser
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "prettier", // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module" // Allows for the use of imports
+  },
+  // TODO change no-console property
+  "rules": {
+    "no-var": "error",
+    "@typescript-eslint/no-explicit-any": 0,
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": ["error", { "args": "after-used" }],
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["error"],
+    "@typescript-eslint/no-this-alias": ["error"],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "prettier/prettier": ["error"],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
+}
+
+/*
+Off - 0
+Warn - 1
+Error - 2
+*/

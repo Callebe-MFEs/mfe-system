@@ -5,10 +5,23 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: mfesR00tPass
 
+  mfe-system-auth:
+    build: ../mfe-system-auth
+    labels:
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.address=http://mfe-system-auth:3000"
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.trustforwardheader=true"
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.authRequestHeaders=Authorization"
+      - "traefik.http.services.mfe-system-auth.loadbalancer.server.port=3000"
+      - "traefik.http.routers.mfe-system-auth.rule=PathPrefix(`/auth`)"
+      - "traefik.http.routers.mfe-system-auth.middlewares=mfe-system-auth-stripprefix"
+      - "traefik.http.middlewares.mfe-system-auth-stripprefix.stripprefix.prefixes=/auth"
+
   applications-service:
     build: ../mfe-system-applications-service
     labels:
       - "traefik.http.routers.applications-service.rule=PathPrefix(`/api`)"
+      # - "traefik.http.routers.applications-service.middlewares=applications-service-chain"
+      # - "traefik.http.middlewares.applications-service-chain.chain.middlewares=mfe-system-auth,applications-service-stripprefix"
       - "traefik.http.routers.applications-service.middlewares=applications-service-stripprefix"
       - "traefik.http.middlewares.applications-service-stripprefix.stripprefix.prefixes=/api"
       - "traefik.http.services.applications-service.loadbalancer.server.port=3000"
@@ -17,6 +30,7 @@ services:
       MONGODB_CONNECTION_STRING: mongodb://root:mfesR00tPass@mongodb:27017
     depends_on:
       - mongodb
+      - mfe-system-auth
 
   applications-mfe:
     build: ../mfe-system-applications-mfe

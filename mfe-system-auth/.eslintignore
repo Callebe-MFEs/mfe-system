@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+reports/
+package.json
+package-lock.json
+tsconfig.**.json
+*.js

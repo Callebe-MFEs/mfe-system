@@ -9,22 +9,45 @@ services:
     ports:
       - 27017:27017
 
+  mfe-system-auth:
+    build: ../mfe-system-auth
+    labels:
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.address=http://mfe-system-auth:3000"
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.trustforwardheader=true"
+      - "traefik.http.middlewares.mfe-system-auth.forwardauth.authRequestHeaders=Authorization"
+      - "traefik.http.services.mfe-system-auth.loadbalancer.server.port=3000"
+      - "traefik.http.routers.mfe-system-auth.rule=PathPrefix(`/auth`)"
+      - "traefik.http.routers.mfe-system-auth.middlewares=mfe-system-auth-stripprefix"
+      - "traefik.http.middlewares.mfe-system-auth-stripprefix.stripprefix.prefixes=/auth"
+
   mfe-system-applications-service:
     build: .
+    labels:
+      - "traefik.http.routers.applications-service.rule=PathPrefix(`/api`)"
+      - "traefik.http.routers.applications-service.middlewares=applications-service-chain"
+      - "traefik.http.middlewares.applications-service-chain.chain.middlewares=mfe-system-auth,applications-service-stripprefix"
+      - "traefik.http.middlewares.applications-service-stripprefix.stripprefix.prefixes=/api"
+      - "traefik.http.services.applications-service.loadbalancer.server.port=3000"
     environment:
       STORAGE: mongo
       MONGODB_CONNECTION_STRING: mongodb://root:mfesR00tPass@mongo:27017
       MONGODB_DATABASE_NAME: applications
       MONGODB_DATABASE_APPLICATIONS_COLLECTION_NAME: applications
-    ports:
-      - 8080:3000
+    # ports:
+    #   - 8080:3000
     depends_on:
       - mongo
+      - mfe-system-auth
 
-  # mongoclient:
-  #   image: mongoclient/mongoclient:4.0.1
-  #   restart: always
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - mongo
+  reverse-proxy:
+    image: traefik:v3.0.1
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
+    ports:
+      # The HTTP port
+      - "8000:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
