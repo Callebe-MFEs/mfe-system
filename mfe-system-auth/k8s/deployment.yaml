@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-system-auth
+  labels:
+    app: mfe-system-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mfe-system-auth
+  template:
+    metadata:
+      labels:
+        app: mfe-system-auth
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: mfe-system-auth
+          image: mfe-system-auth # configure a proper registry
+          imagePullPolicy: Never # configure a proper registry
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: "3000"

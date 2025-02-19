@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfe-system-applications-mfe
+  labels:
+    app: mfe-system-applications-mfe
+spec:
+  selector:
+    app: mfe-system-applications-mfe
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

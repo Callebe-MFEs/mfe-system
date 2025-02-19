@@ -12,7 +12,8 @@
     "pretty-check": "prettier --check src/**/*.ts",
     "pretty-fix": "prettier --write src/**/*.ts",
     "tdd": "karma start karma.conf.cjs --single-run=false",
-    "test": "karma start karma.conf.cjs"
+    "test": "karma start karma.conf.cjs",
+    "docker:build": "docker build -t mfe-system-single-spa-host-application ."
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfe-system-examples-tasks
+  labels:
+    app: mfe-system-examples-tasks
+spec:
+  selector:
+    app: mfe-system-examples-tasks
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

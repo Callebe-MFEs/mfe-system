@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-system-wc-host-application
+  labels:
+    app: mfe-system-wc-host-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mfe-system-wc-host-application
+  template:
+    metadata:
+      labels:
+        app: mfe-system-wc-host-application
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: mfe-system-wc-host-application
+          image: mfe-system-wc-host-application # configure a proper registry
+          imagePullPolicy: Never # configure a proper registry
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: "8080"
+            - name: APPLICATIONS_API
+              value: /api/applications

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mfe-system-examples-messages
+  labels:
+    app: mfe-system-examples-messages
+spec:
+  selector:
+    app: mfe-system-examples-messages
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

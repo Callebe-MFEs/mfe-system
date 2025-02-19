@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-system-examples-messages
+  labels:
+    app: mfe-system-examples-messages
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mfe-system-examples-messages
+  template:
+    metadata:
+      labels:
+        app: mfe-system-examples-messages
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: mfe-system-examples-messages
+          image: mfe-system-examples-messages # configure a proper registry
+          imagePullPolicy: Never # configure a proper registry
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: "8080"

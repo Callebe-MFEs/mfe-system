@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-system-examples-tasks
+  labels:
+    app: mfe-system-examples-tasks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mfe-system-examples-tasks
+  template:
+    metadata:
+      labels:
+        app: mfe-system-examples-tasks
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: mfe-system-examples-tasks
+          image: mfe-system-examples-tasks # configure a proper registry
+          imagePullPolicy: Never # configure a proper registry
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          args: []
+          env:
+            - name: HTTP_PORT
+              value: "8080"
