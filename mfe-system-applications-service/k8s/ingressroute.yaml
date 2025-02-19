@@ -1,0 +1,23 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-applications-service-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /api
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mfe-system-applications-service-route
+spec:
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/api`)
+      services:
+        - name: mfe-system-applications-service
+          port: 80
+      middlewares:
+        - name: mfe-system-applications-service-stripprefix

@@ -28,4 +28,7 @@ spec:
             - name: HTTP_PORT
               value: "8080"
             - name: APPLICATIONS_API
-              value: /api/applications
+              valueFrom:
+                configMapKeyRef:
+                  name: mfe-system-applications-service-config
+                  key: applications-api
