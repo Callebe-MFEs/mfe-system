@@ -9,6 +9,17 @@ spec:
 
 ---
 apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-applications-service-chain
+spec:
+  chain:
+    middlewares:
+      - name: mfe-system-auth-authorization
+      - name: mfe-system-applications-service-stripprefix
+
+---
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: mfe-system-applications-service-route
@@ -20,4 +31,6 @@ spec:
         - name: mfe-system-applications-service
           port: 80
       middlewares:
+        # - name: mfe-system-applications-service-chain
+        # uncoment line above and comment libe bellow if you want to apply authorization before routing the calls
         - name: mfe-system-applications-service-stripprefix
