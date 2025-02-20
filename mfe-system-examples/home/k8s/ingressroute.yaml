@@ -1,0 +1,23 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-examples-home-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /apps/home
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mfe-system-examples-home-route
+spec:
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/apps/home`)
+      services:
+        - name: mfe-system-examples-home
+          port: 80
+      middlewares:
+        - name: mfe-system-examples-home-stripprefix

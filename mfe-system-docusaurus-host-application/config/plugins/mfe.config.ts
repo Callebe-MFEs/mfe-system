@@ -1,6 +1,6 @@
 export const mfeConfig = {
   mfe: {
-    basepath: "/my-apps", // optional configuration. equal to /apps if not set
+    // basepath: "/my-apps", // optional configuration. equal to /apps if not set
     // authRequired: true,
     applicationsEndpoint: "/api/applications", // optional configuration. equal to /applications if not set
   },

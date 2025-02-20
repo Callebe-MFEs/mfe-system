@@ -99,3 +99,24 @@ docker compose down
 ```
 
 it will stop and remove the docker containers
+
+
+## Running using Kubernetes
+
+### Prerequisites
+
+install traefik in kubernets cluster using helm chart
+
+```bash
+helm repo add traefik https://traefik.github.io/charts
+helm repo update
+helm install traefik-crds traefik/traefik-crds
+helm install traefik traefik/traefik --skip-crds
+```
+
+Inside each project we have a folder called `k8s` that contains kubernets configuration files.
+You can apply them to install 
+
+# References
+
+- [Traefik Helm installation](https://github.com/traefik/traefik-helm-chart/blob/master/README.md)

@@ -1,0 +1,35 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-auth-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /auth
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-auth-authorization
+spec:
+  forwardAuth:
+    address: http://mfe-system-auth
+    trustForwardHeader: true
+    authRequestHeaders:
+      - "Authorization"
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mfe-system-auth-route
+spec:
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/auth`)
+      services:
+        - name: mfe-system-auth
+          port: 80
+      middlewares:
+        - name: mfe-system-auth-stripprefix

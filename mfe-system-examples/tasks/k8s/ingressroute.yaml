@@ -1,0 +1,23 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: mfe-system-examples-tasks-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - /apps/tasks
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: mfe-system-examples-tasks-route
+spec:
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/apps/tasks`)
+      services:
+        - name: mfe-system-examples-tasks
+          port: 80
+      middlewares:
+        - name: mfe-system-examples-tasks-stripprefix
